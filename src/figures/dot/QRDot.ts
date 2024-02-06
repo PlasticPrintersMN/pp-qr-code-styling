@@ -170,14 +170,7 @@ export default class QRDot {
     this._basicDot({ x, y, size, rotation: 0 });
   }
 
-  // _drawRandomDot({ x, y, size }: DrawArgs): void {
-  //   console.log('random dot', this._data)
-  //   const randomFactor = Math.random() * (1 - 0.6) + 0.6;
-  //   this._basicDot({ x, y, size: size * randomFactor, rotation: 0 });
-  // }
-
   _drawRandomDot({ x, y, size }: DrawArgs): void {
-    console.log('random dot', this._data);
 
     let randomFactor;
     
