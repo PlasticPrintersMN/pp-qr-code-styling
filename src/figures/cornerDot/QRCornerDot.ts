@@ -75,20 +75,10 @@ export default class QRCornerDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        const xmlns = "http://www.w3.org/2000/svg";
-
-        // Note! We have to wrap the SVG with a foreignObject element in order to rotate it!!!
-        const foreignObject = document.createElementNS(xmlns, "foreignObject");
-        foreignObject.setAttribute("x", String(x));
-        foreignObject.setAttribute("y", String(y));
-        foreignObject.setAttribute("width", String(size));
-        foreignObject.setAttribute("height", String(size));
-
-        const svg = createHeartSVG(size, this._color ?? "black");
-        foreignObject.append(svg);
+        const svg = createHeartSVG(size, String(x), String(y), this._color ?? "black");
 
         // IMPORTANT! For embedded SVG corners: Append to 'this._svg' - NOT to 'this._element' because the latter would be added to a clipPath
-        this._svg.appendChild(foreignObject);
+        this._svg.appendChild(svg);
       }
     });
   }

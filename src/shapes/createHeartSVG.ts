@@ -1,10 +1,12 @@
-export function createHeartSVG(size: number, color: string): SVGSVGElement {
+export function createHeartSVG(size: number, x: string, y: string, color: string): SVGSVGElement {
   const xmlns = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(xmlns, "svg");
   svg.setAttribute("width", size.toString());
   svg.setAttribute("height", size.toString());
   svg.setAttribute("viewBox", "0 -960 960 960");
   svg.setAttribute("fill", color);
+  svg.setAttribute("x", x);
+  svg.setAttribute("y", y);
 
   const path = document.createElementNS(xmlns, "path");
   path.setAttribute(
