@@ -489,6 +489,7 @@ export default class QRSVG {
     rect.setAttribute("height", String(height));
     rect.setAttribute("width", String(width));
     rect.setAttribute("clip-path", `url('#clip-path-${name}')`);
+    rect.style.setProperty("-webkit-clip-path", `url('#clip-path-${name}')`);
 
     if (options) {
       let gradient: SVGElement;
