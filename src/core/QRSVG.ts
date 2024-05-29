@@ -128,6 +128,8 @@ export default class QRSVG {
     const element = this._element;
     const options = this._options;
 
+    const rand = Math.random() * (1 - 0.6) + 0.6;
+
     if (element) {
       const gradientOptions = options.backgroundOptions?.gradient;
       const color = options.backgroundOptions?.color;
@@ -141,7 +143,7 @@ export default class QRSVG {
           y: 0,
           height: options.height,
           width: options.width,
-          name: "background-color"
+          name: `background-color-${rand}`
         });
       }
 
@@ -149,7 +151,7 @@ export default class QRSVG {
         const size = Math.min(options.width, options.height);
         const element = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         this._backgroundClipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-        this._backgroundClipPath.setAttribute("id", "clip-path-background-color");
+        this._backgroundClipPath.setAttribute("id", `clip-path-background-color-${rand}`);
         this._defs.appendChild(this._backgroundClipPath);
 
         element.setAttribute("x", String((options.width - size) / 2));
@@ -168,6 +170,8 @@ export default class QRSVG {
       throw "QR code is not defined";
     }
 
+    const rand = Math.random() * (1 - 0.6) + 0.6;
+
     const options = this._options;
     const count = this._qr.getModuleCount();
 
@@ -183,7 +187,7 @@ export default class QRSVG {
     const dot = new QRDot({ svg: this._element, type: options.dotsOptions.type, data: options.data });
 
     this._dotsClipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-    this._dotsClipPath.setAttribute("id", "clip-path-dot-color");
+    this._dotsClipPath.setAttribute("id", `clip-path-dot-color-${rand}`);
     this._defs.appendChild(this._dotsClipPath);
 
     this._createColor({
@@ -194,7 +198,7 @@ export default class QRSVG {
       y: 0,
       height: options.height,
       width: options.width,
-      name: "dot-color"
+      name: `dot-color-${rand}`
     });
 
     for (let i = 0; i < count; i++) {
@@ -291,6 +295,8 @@ export default class QRSVG {
       throw "Element code is not defined";
     }
 
+    const rand = Math.random() * (1 - 0.6) + 0.6;
+
     const count = this._qr.getModuleCount();
     const minSize = Math.min(options.width, options.height) - options.margin * 2;
     const realQRSize = options.shape === shapeTypes.circle ? minSize / Math.sqrt(2) : minSize;
@@ -312,7 +318,7 @@ export default class QRSVG {
 
       if (options.cornersSquareOptions?.gradient || options.cornersSquareOptions?.color) {
         cornersSquareClipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-        cornersSquareClipPath.setAttribute("id", `clip-path-corners-square-color-${column}-${row}`);
+        cornersSquareClipPath.setAttribute("id", `clip-path-corners-square-color-${column}-${row}-${rand}`);
         this._defs.appendChild(cornersSquareClipPath);
         this._cornersSquareClipPath = this._cornersDotClipPath = cornersDotClipPath = cornersSquareClipPath;
 
@@ -324,7 +330,7 @@ export default class QRSVG {
           y,
           height: cornersSquareSize,
           width: cornersSquareSize,
-          name: `corners-square-color-${column}-${row}`
+          name: `corners-square-color-${column}-${row}-${rand}`
         });
       }
 
@@ -361,7 +367,7 @@ export default class QRSVG {
 
       if (options.cornersDotOptions?.gradient || options.cornersDotOptions?.color) {
         cornersDotClipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-        cornersDotClipPath.setAttribute("id", `clip-path-corners-dot-color-${column}-${row}`);
+        cornersDotClipPath.setAttribute("id", `clip-path-corners-dot-color-${column}-${row}-${rand}`);
         this._defs.appendChild(cornersDotClipPath);
         this._cornersDotClipPath = cornersDotClipPath;
 
@@ -373,7 +379,7 @@ export default class QRSVG {
           y: y + dotSize * 2,
           height: cornersDotSize,
           width: cornersDotSize,
-          name: `corners-dot-color-${column}-${row}`
+          name: `corners-dot-color-${column}-${row}-${rand}`
         });
       }
 
